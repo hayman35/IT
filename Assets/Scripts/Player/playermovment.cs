@@ -2,46 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playermovment : MonoBehaviour
+public class PlayerMovment : MonoBehaviour
 {
-    public CharacterController controller;
+    private CharacterController character;
+    Animator animator;
 
-    public float speed = 12f;
-    public float groundDistance = 0.4f;
-    public float jumpHeight = 3f;
-    public float gravity = -9.81f;
+    [SerializeField]
+    private float moveSpeed = 100;
 
-    public Transform groundCheck;
+    [SerializeField]
+    private float turnSpeed = 5;
 
-    public LayerMask groundMask;
-
-
-    Vector3 velocity; 
-    bool isGrounded;
-
-    // Update is called once per frame
-    void Update()
-    {
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        if(isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * speed * Time.deltaTime);
-
-        if(Input.GetButtonDown("Jump") && isGrounded)
-        {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        }
-
-        velocity.y += gravity * Time.deltaTime;
-
-        controller.Move(velocity * Time.deltaTime); 
+    private void Awake() {
+        character = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
     }
+    private void Update() {
+        var horizontal = Input.GetAxis("Horizontal");
+        var vertical = Input.GetAxis("Vertical");
+
+        var movement = new Vector3(horizontal, 0, vertical);
+
+        character.SimpleMove(movement * Time.deltaTime * moveSpeed);
+
+        animator.SetFloat("Speed", movement.magnitude);
+
+        if(movement.magnitude > 0)
+        {
+        Quaternion newDirection = Quaternion.LookRotation(movement * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, newDirection, Time.deltaTime * turnSpeed);
+        }
+    }
+
 }
