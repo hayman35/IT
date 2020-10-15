@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Player\PlayerMovment.cs" />
+     <Compile Include="Assets\Scripts\Shooting\Gun.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
@@ -589,6 +590,9 @@
     <Reference Include="Unity.Timeline.Editor">
         <HintPath>C:/Users/hayma/OneDrive - The University of Western Ontario/Documents/Game Projects/IT/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Cinemachine">
+        <HintPath>C:/Users/hayma/OneDrive - The University of Western Ontario/Documents/Game Projects/IT/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.ProGrids">
         <HintPath>C:/Users/hayma/OneDrive - The University of Western Ontario/Documents/Game Projects/IT/Library/ScriptAssemblies/Unity.ProGrids.dll</HintPath>
     </Reference>
@@ -621,6 +625,9 @@
     </Reference>
     <Reference Include="Unity.Rider.Editor">
         <HintPath>C:/Users/hayma/OneDrive - The University of Western Ontario/Documents/Game Projects/IT/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="com.unity.cinemachine.editor">
+        <HintPath>C:/Users/hayma/OneDrive - The University of Western Ontario/Documents/Game Projects/IT/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ProBuilder.AddOns.Editor">
         <HintPath>C:/Users/hayma/OneDrive - The University of Western Ontario/Documents/Game Projects/IT/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
