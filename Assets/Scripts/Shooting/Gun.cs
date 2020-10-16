@@ -47,7 +47,7 @@ public class Gun : MonoBehaviour
 
     private void FireGun()
     {
-        muzzleFlash.Play();
+        //muzzleFlash.Play();
         gunfireSource.Play();
        
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f); // getting a vector thats cener screen 
