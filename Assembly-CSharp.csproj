@@ -36,6 +36,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Camera\mouseLook.cs" />
      <Compile Include="Assets\Scripts\Player\PlayerMovment.cs" />
      <Compile Include="Assets\Scripts\Shooting\Gun.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -13,25 +13,49 @@ public class PlayerMovment : MonoBehaviour
     [SerializeField]
     private float turnSpeed = 5;
 
+    public GameObject cameraOrbit;
+
+    public float mouseSensitivity = 100.0f;
+    public float clampAngle = 80.0f;
+    
+    public Transform head;
+    
+    private float rotY = 0.0f; // rotation around the up/y axis
+    private float rotX = 0.0f; // rotation around the right/x axis
+    
+    private void Start() {
+        Vector3 rot = transform.localRotation.eulerAngles;
+         rotY = rot.y;
+         rotX = rot.x;
+    }
+
     private void Awake() {
         character = GetComponent<CharacterController>();
         animator = GetComponentInChildren<Animator>();
     }
     private void Update() {
+
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = -Input.GetAxis("Mouse Y");
+ 
+        rotY += mouseX * mouseSensitivity * Time.deltaTime;
+        rotX += mouseY * mouseSensitivity * Time.deltaTime;
+ 
+        rotX = Mathf.Clamp(rotX, -clampAngle, clampAngle);
+ 
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
+
+
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
 
         var movement = new Vector3(horizontal, 0, vertical);
 
-        character.SimpleMove(movement * Time.deltaTime * moveSpeed);
-
-        animator.SetFloat("Speed", movement.magnitude);
-
-        if(movement.magnitude > 0)
-        {
-        Quaternion newDirection = Quaternion.LookRotation(movement * Time.deltaTime);
-        transform.rotation = Quaternion.Slerp(transform.rotation, newDirection, Time.deltaTime * turnSpeed);
-        }
+        animator.SetFloat("Speed",vertical);
+        
+        character.SimpleMove(transform.forward * moveSpeed * vertical);
+        
     }
 
 }

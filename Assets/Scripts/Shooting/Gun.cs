@@ -17,12 +17,10 @@ public class Gun : MonoBehaviour
     private ParticleSystem muzzleParticle;
 
     private float timer;
-    
-    [SerializeField]
-    private Transform firePoint;
 
     [SerializeField]
     private AudioSource gunfireSource;
+
 
     // Update is called once per frame
     void Update()
@@ -44,15 +42,15 @@ public class Gun : MonoBehaviour
     {
         muzzleParticle.Play();
         gunfireSource.Play();
-        // Debug.DrawRay(firePoint.position, firePoint.forward * 100, Color.red, 19f);
+       
 
+        
         muzzleParticle.Play();
-        Ray ray = new Ray(firePoint.position,firePoint.forward);
+        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f); // getting a vector thats cener screen 
         RaycastHit hit;
-
-        if(Physics.Raycast(ray, out hit, 100))
-        {
-                //Destroy(hit.collider.gameObject);
-        }
+        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 19f);
+        // if(Physics.Raycast(ray, out hit, 100))
+        // {
+        // }
     }
 }
