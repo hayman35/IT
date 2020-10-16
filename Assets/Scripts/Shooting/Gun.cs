@@ -13,10 +13,17 @@ public class Gun : MonoBehaviour
     [Range(1,10)]
     private int damage = 1;
 
-    [SerializeField]
-    private ParticleSystem muzzleParticle;
+    public GameObject firePoint;
+
+    public ParticleSystem muzzleFlash;
+
+    public float bulletSpeed = 100f;
+
+    public GameObject impactFX;
 
     private float timer;
+
+    public GameObject bullet;
 
     [SerializeField]
     private AudioSource gunfireSource;
@@ -40,17 +47,17 @@ public class Gun : MonoBehaviour
 
     private void FireGun()
     {
-        muzzleParticle.Play();
+        muzzleFlash.Play();
         gunfireSource.Play();
        
-
-        
-        muzzleParticle.Play();
         Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f); // getting a vector thats cener screen 
-        RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction * 100, Color.red, 19f);
-        // if(Physics.Raycast(ray, out hit, 100))
-        // {
-        // }
+        RaycastHit hit;        
+        if(Physics.Raycast(ray, out hit, 200))
+        {
+
+        }
+
+        GameObject impactGO = Instantiate(impactFX, hit.point, Quaternion.LookRotation(hit.normal));
+        Destroy(impactGO,2f);
     }
 }
