@@ -27,7 +27,7 @@ public class Gun : MonoBehaviour
 
     public GameObject bulletFX;
 
-    public GameObject muzzlePosition;
+    public GameObject flare;
 
     [SerializeField]
     private AudioSource gunfireSource;
@@ -53,18 +53,25 @@ public class Gun : MonoBehaviour
     {
         gunfireSource.Play();
        
-        Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f); // getting a vector thats cener screen
+        //Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f); // getting a vector thats cener screen
+        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         
         RaycastHit hit;        
     
     
         if(Physics.Raycast(ray, out hit, weaponRange))
         {
+            // take the point of collision (make sure all objects have a collider)
+            Vector3 colisionPoint = hit.point;
 
-            if (hit.collider.tag == "Enemy")
-            {
-                Debug.Log("HIT");
-            }
+             //Create a vector for the path of the bullet from the 'gun' to the target
+            Vector3 bulletVector = colisionPoint - bulletFX.transform.position;
+
+            GameObject bulletGO = Instantiate(bulletFX, firePoint.transform.position, Quaternion.LookRotation(ray.direction));
+            bulletGO.GetComponent<Rigidbody>().AddForce(ray.direction * bulletSpeed, ForceMode.VelocityChange);
+            Destroy(bulletGO,4f);
+            GameObject impactGO = Instantiate(impactFX, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(impactGO,2f);
 
             // Check if the object we hit has a rigidbody attached
                 if (hit.rigidbody != null)
@@ -74,18 +81,7 @@ public class Gun : MonoBehaviour
                 }
         }
         
-        GameObject muzzleFlashGO = Instantiate(muzzleFlash, muzzlePosition.transform.position, muzzlePosition.transform.rotation);
-        GameObject bulletGO = Instantiate(bulletFX, firePoint.transform.position, Quaternion.LookRotation(ray.direction));
-        bulletGO.GetComponent<Rigidbody>().AddForce(ray.direction * bulletSpeed, ForceMode.VelocityChange); 
-        float Dis = bulletGO.GetComponent<Rigidbody>().velocity * Time.deltaTime;
-
-        GameObject impactGO = Instantiate(impactFX, hit.point, Quaternion.LookRotation(hit.normal));
-        Destroy(impactGO,2f);
-        
-        
-            
-        
-        Destroy(bulletGO,4f);
+        GameObject muzzleFlashGO = Instantiate(muzzleFlash, flare.transform.position, flare.transform.rotation);
         Destroy(muzzleFlashGO, 2f);
     }
 }
