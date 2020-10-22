@@ -53,7 +53,6 @@ public class Gun : MonoBehaviour
     {
         gunfireSource.Play();
        
-        //Ray ray = Camera.main.ViewportPointToRay(Vector3.one * 0.5f); // getting a vector thats cener screen
         Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         
         RaycastHit hit;        

@@ -6,25 +6,32 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     private Enemycontroller enemycontroller;
-    private Animator animator;
+    Animator animator;
     private NavMeshAgent nav;
+    private Transform target;
     private void Awake() 
     {
         nav = GetComponent<NavMeshAgent>();
         enemycontroller = GetComponent<Enemycontroller>();
         enemycontroller.OnAttack += Enemycontroller_OnAttack;
-        animator.GetComponentInChildren<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update() {
-        var x = nav.velocity.x;
-        var y = nav.velocity.y;
-        animator.SetFloat("VelX", x);
-        animator.SetFloat("VelY",y);
+        if (target != null)
+        {
+            nav.SetDestination(target.position);
+            
+            float speed = nav.velocity.magnitude;
+            animator.SetFloat("Speed", speed);
+        }
+        
+        
     }
 
     private void Enemycontroller_OnAttack(Transform target)
     {
-        nav.SetDestination(target.transform.position);
+        this.target = target;
+        
     }
 }
