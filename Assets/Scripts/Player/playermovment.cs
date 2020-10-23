@@ -15,6 +15,15 @@ public class PlayerMovment : MonoBehaviour
     private float rotX = 0.0f; // rotation around the right/x axis
     public float minX = -60f;
     public float maxX = 60f;
+    public float jumpHeight = 8.0F;
+    private Vector3 movement;
+    Vector3 velocity;
+    public Transform groundcheck;
+    public float groundDistance = 0.4f;
+    public float gravity = -9.81f;
+    public LayerMask groundMask;
+    bool isGrounded;
+    
  
 
     
@@ -34,40 +43,41 @@ public class PlayerMovment : MonoBehaviour
         
         var horizontal = Input.GetAxisRaw("Horizontal");
         var vertical = Input.GetAxisRaw("Vertical");
+        var jump = Input.GetKeyDown(KeyCode.Space);
         float mouseX = Input.GetAxis("Mouse X");
         float mouseY = -Input.GetAxis("Mouse Y");
- 
+        isGrounded = Physics.CheckSphere(groundcheck.position, groundDistance, groundMask); // creating a sphere is check if the player is grounded 
+
+        /*
+        Mouse Movement 
+        */
         rotY += mouseX * mouseSensitivity * Time.deltaTime;
         rotX += mouseY * mouseSensitivity * Time.deltaTime;
- 
         rotX = Mathf.Clamp(rotX,minX,maxX);
- 
         Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
         transform.rotation = localRotation;
+        /*
+        Mouse Movement 
+        */
         
-        Move(horizontal,vertical);
-    }
-
-    private void Move(float x, float y)
-    { 
-
-        var movement = new Vector3(x, 0f, y).normalized;
-
-        // Setting the camera direction so that movement happens both ways 
-        movement = Camera.main.transform.TransformDirection(movement);
-        movement.y = 0f;
-
-        if (movement.magnitude >= 0.1f)
+        if(isGrounded && velocity.y < 0)
         {
-            character.Move(movement * moveSpeed * Time.deltaTime);
+            velocity.y = -2f;
         }
         
+        movement = transform.right * horizontal + transform.forward *vertical;
 
-        character.SimpleMove(transform.forward * moveSpeed * y);
-        animator.SetFloat("VelX", x);
-        animator.SetFloat("VelY",y);
+        character.Move(movement * moveSpeed * Time.deltaTime);
 
-        
+        if (jump && isGrounded)
+        {   
+            animator.SetTrigger("jump");
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        }
+        velocity.y += gravity *Time.deltaTime;
+
+        character.Move(velocity * Time.deltaTime);
+        animator.SetFloat("VelX", horizontal);
+        animator.SetFloat("VelY",vertical);
     }
-
 }
