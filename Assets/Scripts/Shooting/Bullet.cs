@@ -21,7 +21,10 @@ public class Bullet : MonoBehaviour
         mPresPos = transform.position;
         RaycastHit[] hits = Physics.RaycastAll(new Ray(mPresPos,(transform.position - mPresPos).normalized), (transform.position - mPresPos).magnitude);
         
-        
+        if (bulletSpeed != 0)
+        {
+            transform.position += transform.forward * (bulletSpeed * Time.deltaTime);
+        }
         for (int i = 0; i <hits.Length; i++)
         {
             Debug.Log(hits[i].collider.gameObject.name);

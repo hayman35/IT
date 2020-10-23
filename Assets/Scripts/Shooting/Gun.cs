@@ -31,13 +31,16 @@ public class Gun : MonoBehaviour
 
     public GameObject bullet;
 
+    public List<GameObject> vfx = new List<GameObject> ();
+
+    private GameObject effectToSpawn;
    
     [SerializeField]
     private AudioSource gunfireSource;
 
     private void Start() 
     {
-       
+       effectToSpawn = vfx[0];
     }
     // Update is called once per frame
     void Update()
@@ -59,9 +62,9 @@ public class Gun : MonoBehaviour
     private void FireGun()
     {
         gunfireSource.Play();
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
-        GameObject bulletGO = Instantiate(bullet, firePoint.transform.position, Quaternion.LookRotation(ray.direction));
-        bulletGO.GetComponent<Rigidbody>().AddForce(ray.direction * bulletSpeed, ForceMode.VelocityChange);
+       // Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        GameObject bulletGO = Instantiate(effectToSpawn, firePoint.transform.position, Quaternion.identity);
+       // bulletGO.GetComponent<Rigidbody>().AddForce(ray.direction * bulletSpeed, ForceMode.VelocityChange);
     //    // RaycastHit hit;        
        
     //     Destroy(bulletGO,4f);
