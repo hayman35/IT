@@ -7,11 +7,17 @@ public class Bullet : MonoBehaviour
     public GameObject explisionVFX;
     public float expolsionForce = 10f;
     public float radius = 10f;
+    public AudioSource expolsionSound;
+    public LayerMask mask;
+    
 
-
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision c)
     {
         Explode();
+        if((mask.value & 1<<c.gameObject.layer) == 1<<c.gameObject.layer)
+        {
+            Destroy(c.gameObject);
+        }
     }
 
 
@@ -27,8 +33,9 @@ public class Bullet : MonoBehaviour
             {rig.AddExplosionForce(expolsionForce,transform.position, radius, 1f, ForceMode.Impulse);}
         }
 
-        Instantiate(explisionVFX,transform.position, transform.rotation);
-        Destroy(gameObject,2f);
+        GameObject VFX = Instantiate(explisionVFX,transform.position, transform.rotation);
+        expolsionSound.Play();
+        Destroy(VFX,2f);
     }
 
      

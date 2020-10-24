@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
     bool launched;
    
     [SerializeField]
-    private AudioSource gunfireSource;
+    public AudioSource rocketSound;
 
     private void Start() 
     {
@@ -35,7 +35,8 @@ public class Gun : MonoBehaviour
         if(timer >= fireRate)
         {
             if(Input.GetButton("Fire1"))
-            {
+            {   
+                rocketSound.Play();
                 Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
                 animator.SetTrigger("shoot");
                 Camera cam = Camera.main;

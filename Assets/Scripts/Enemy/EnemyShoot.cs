@@ -9,12 +9,11 @@ public class EnemyShoot : MonoBehaviour
     private int damage = 1;
     public AudioSource gunfireSource;
 
-    public GameObject firePoint;
-    public GameObject muzzleFlash;
+    public Transform firePoint;
     public float attackefreshRate = 1.5f;
-    public GameObject bulletFX;
-    public float bulletSpeed = 10f;
-    public GameObject flare;
+    public GameObject rocket;
+    public float rocketSpeed = 10f;
+    public AudioSource rocketSound;
 
     private Enemycontroller enemycontroller;
     private Transform target;
@@ -57,12 +56,11 @@ public class EnemyShoot : MonoBehaviour
     private void Attack()
     {
         attackTimer = 0;
-        // gunfireSource.Play();
-        // GameObject muzzleFlashGO = Instantiate(muzzleFlash, flare.transform.position, flare.transform.rotation);
-        // Destroy(muzzleFlashGO, 2f);
-        // GameObject bulletGO = Instantiate(bulletFX, firePoint.transform.position, firePoint.transform.rotation);
-        // bulletGO.GetComponent<Rigidbody>().AddForce(Vector3.forward * -bulletSpeed, ForceMode.VelocityChange);
-        // Destroy(bulletGO,4f);
+        rocketSound.Play();
+        GameObject rocketGo = Instantiate(rocket,firePoint.position,firePoint.rotation);
+        rocketGo.GetComponent<Rigidbody>().AddForce(firePoint.forward * rocketSpeed,ForceMode.Impulse);
+        Destroy(rocketGo,2f);
+      
 
     }
 }
