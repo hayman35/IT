@@ -4,38 +4,32 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float bulletSpeed = 100f;
-    Vector3 mPresPos;
+    public GameObject explisionVFX;
+    public float expolsionForce = 10f;
+    public float radius = 10f;
 
 
-    // Start is called before the first frame update
-    void Start()
+    void OnCollisionEnter(Collision collision)
     {
-        mPresPos = transform.position;
-        
+        Explode();
     }
 
-    // Update is called once per frame
-    void Update()
+
+    private void Explode()
     {
-        mPresPos = transform.position;
-        RaycastHit[] hits = Physics.RaycastAll(new Ray(mPresPos,(transform.position - mPresPos).normalized), (transform.position - mPresPos).magnitude);
-        
-        if (bulletSpeed != 0)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+
+        foreach(Collider near in colliders)
         {
-            transform.position += transform.forward * (bulletSpeed * Time.deltaTime);
+            Rigidbody rig = near.GetComponent<Rigidbody>();
+
+            if(rig != null)
+            {rig.AddExplosionForce(expolsionForce,transform.position, radius, 1f, ForceMode.Impulse);}
         }
-        for (int i = 0; i <hits.Length; i++)
-        {
-            Debug.Log(hits[i].collider.gameObject.name);
-            
-            
-        }
-        
+
+        Instantiate(explisionVFX,transform.position, transform.rotation);
+        Destroy(gameObject,2f);
     }
 
-     void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log(collision.gameObject.name);
-    }
+     
 }
