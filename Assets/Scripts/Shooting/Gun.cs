@@ -37,10 +37,9 @@ public class Gun : MonoBehaviour
             if(Input.GetButton("Fire1"))
             {   
                 rocketSound.Play();
-                Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
                 animator.SetTrigger("shoot");
                 Camera cam = Camera.main;
-                GameObject rocketGO = (GameObject)Instantiate(rocket,cam.transform.position, Quaternion.LookRotation(Vector3.up,Vector3.up));
+                GameObject rocketGO = (GameObject)Instantiate(rocket,cam.transform.position, firePoint.transform.rotation);
                 rocketGO.GetComponent<Rigidbody>().AddForce(cam.transform.forward * rocketSpeed,ForceMode.Impulse);
                 timer = 0f;
   
@@ -48,8 +47,6 @@ public class Gun : MonoBehaviour
         }
 
     }
-
-     
 
 
   

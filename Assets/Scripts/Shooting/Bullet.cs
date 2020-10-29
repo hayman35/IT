@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision c)
     {
         Explode();
+        Destroy(gameObject);
         if((mask.value & 1<<c.gameObject.layer) == 1<<c.gameObject.layer)
         {
             Destroy(c.gameObject);

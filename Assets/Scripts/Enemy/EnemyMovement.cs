@@ -1,37 +1,117 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Enemycontroller enemycontroller;
-    Animator animator;
-    private NavMeshAgent nav;
-    private Transform target;
-    private void Awake() 
+    public NavMeshAgent agent;
+
+    public Transform player;
+
+    public LayerMask whatIsGround, whatIsPlayer;
+
+    public GameObject rocket;
+
+    public float rocketSpeed = 10f;
+
+    public AudioSource rocketSound;
+
+    public Transform firePoint;
+
+    public Animator animator;
+
+    //Patroling
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
+    //Attacking
+    public float timeBetweenAttacks;
+    bool alreadyAttacked;
+    public GameObject projectile;
+
+    //States
+    public float sightRange, attackRange;
+    public bool playerInSightRange, playerInAttackRange;
+
+    private void Awake()
     {
-        nav = GetComponent<NavMeshAgent>();
-        enemycontroller = GetComponent<Enemycontroller>();
-        enemycontroller.OnAttack += Enemycontroller_OnAttack;
-        animator = GetComponentInChildren<Animator>();
+        player = GameObject.Find("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
     }
 
-    private void Update() {
-        if (target != null)
+    private void Update()
+    {
+        //Check for sight and attack range
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+
+        if (!playerInSightRange && !playerInAttackRange) Patroling();
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+    }
+
+    private void Patroling()
+    {
+        if (!walkPointSet) SearchWalkPoint();
+
+        if (walkPointSet)
         {
-            nav.SetDestination(target.position);
-            
-            float speed = nav.velocity.magnitude;
-            animator.SetFloat("Speed", speed);
+            agent.SetDestination(walkPoint);
         }
-        
-        
+
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+        //Walkpoint reached
+        if (distanceToWalkPoint.magnitude < 1f)
+            walkPointSet = false;
+    }
+    private void SearchWalkPoint()
+    {
+        //Calculate random point in range
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+            walkPointSet = true;
     }
 
-    private void Enemycontroller_OnAttack(Transform target)
+    private void ChasePlayer()
     {
-        this.target = target;
-        
+        float speed = agent.velocity.magnitude;
+        animator.SetFloat("Speed",speed);
+        agent.SetDestination(player.position);
+    }
+
+    private void AttackPlayer()
+    {
+        //Make sure enemy doesn't move
+        agent.SetDestination(transform.position);
+
+        transform.LookAt(player);
+
+        if (!alreadyAttacked)
+        {
+            ///Attack code here
+            animator.SetTrigger("shoot");
+            GameObject rocketGo = Instantiate(rocket,firePoint.position,firePoint.rotation);
+            rocketGo.GetComponent<Rigidbody>().AddForce(firePoint.forward * rocketSpeed,ForceMode.Impulse);
+            Destroy(rocketGo,2f);
+            ///End of attack code
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    private void DestroyEnemy()
+    {
+        Destroy(gameObject);
     }
 }

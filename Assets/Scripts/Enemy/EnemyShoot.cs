@@ -24,7 +24,7 @@ public class EnemyShoot : MonoBehaviour
     private void Awake() 
     {
         enemycontroller = GetComponent<Enemycontroller>();
-        enemycontroller.OnAttack += Enemycontroller_OnAttack;
+        // enemycontroller.OnAttack += Enemycontroller_OnAttack;
 
     }
 
@@ -53,7 +53,7 @@ public class EnemyShoot : MonoBehaviour
 
     }
 
-    private void Attack()
+    public void Attack()
     {
         attackTimer = 0;
         rocketSound.Play();
