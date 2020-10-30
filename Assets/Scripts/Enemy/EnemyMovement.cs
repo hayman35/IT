@@ -20,6 +20,15 @@ public class EnemyMovement : MonoBehaviour
 
     public Animator animator;
 
+    private Transform startTransform;
+
+    public float multiplyBy;
+
+    public ITManager it;
+
+    public float multiplier = 3; // or more
+    public float range = 30;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -46,9 +55,10 @@ public class EnemyMovement : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange && !it.player_IT) Patroling();
+        if (playerInSightRange && !playerInAttackRange && !it.player_IT) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange && !it.player_IT) AttackPlayer();
+        if (it.player_IT) RunAway();
     }
 
     private void Patroling()
@@ -85,6 +95,17 @@ public class EnemyMovement : MonoBehaviour
         agent.SetDestination(player.position);
     }
 
+    private void RunAway()
+    {
+        if (playerInSightRange)
+        {
+            Vector3 runTo = transform.position + ((transform.position - player.position) * multiplier);
+            agent.SetDestination(runTo);
+        }
+            
+        
+    }
+
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
@@ -98,7 +119,7 @@ public class EnemyMovement : MonoBehaviour
             animator.SetTrigger("shoot");
             GameObject rocketGo = Instantiate(rocket,firePoint.position,firePoint.rotation);
             rocketGo.GetComponent<Rigidbody>().AddForce(firePoint.forward * rocketSpeed,ForceMode.Impulse);
-            Destroy(rocketGo,2f);
+           // Destroy(rocketGo,2f);
             ///End of attack code
 
             alreadyAttacked = true;

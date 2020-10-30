@@ -40,9 +40,9 @@ public class Gun : MonoBehaviour
                 animator.SetTrigger("shoot");
                 Camera cam = Camera.main;
                 GameObject rocketGO = (GameObject)Instantiate(rocket,cam.transform.position, firePoint.transform.rotation);
+                rocketGO.SetActive(true);
                 rocketGO.GetComponent<Rigidbody>().AddForce(cam.transform.forward * rocketSpeed,ForceMode.Impulse);
                 timer = 0f;
-  
             }
         }
 

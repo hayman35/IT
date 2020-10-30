@@ -9,7 +9,16 @@ public class Bullet : MonoBehaviour
     public float radius = 10f;
     public AudioSource expolsionSound;
     public LayerMask mask;
-    
+    public ITManager it;
+
+    private void Start() 
+    {
+        
+    }
+    private void Update() 
+    {
+        
+    }
 
     void OnCollisionEnter(Collision c)
     {
@@ -17,8 +26,12 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
         if((mask.value & 1<<c.gameObject.layer) == 1<<c.gameObject.layer)
         {
-            Destroy(c.gameObject);
+            if(c.collider.tag == "Player")
+            {it.hit_Player = true;}
+            if(c.collider.tag == "Enemy")
+            {it.hit_Enemy = true;}
         }
+        
     }
 
 

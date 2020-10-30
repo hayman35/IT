@@ -46,6 +46,7 @@
      <Compile Include="Assets\Scripts\Player\PlayerMovment.cs" />
      <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
      <Compile Include="Assets\Scripts\Shooting\Gun.cs" />
+     <Compile Include="Assets\Scripts\Timer\CountDownTimer.cs" />
      <Compile Include="Assets\StylizedProjectilePack1\scripts\destroyMe.cs" />
      <Compile Include="Assets\StylizedProjectilePack1\scripts\instantiateEffectCaller.cs" />
      <Compile Include="Assets\StylizedProjectilePack1\scripts\particleColorChanger.cs" />
