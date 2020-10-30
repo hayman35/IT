@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
@@ -20,12 +19,8 @@ public class EnemyMovement : MonoBehaviour
 
     public Animator animator;
 
-    private Transform startTransform;
-
-    public float multiplyBy;
-
+private Transform startTransform;
     public ITManager it;
-
     public float multiplier = 3; // or more
     public float range = 30;
 
@@ -55,10 +50,10 @@ public class EnemyMovement : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange && !it.player_IT) Patroling();
-        if (playerInSightRange && !playerInAttackRange && !it.player_IT) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange && !it.player_IT) AttackPlayer();
-        if (it.player_IT) RunAway();
+        if (!playerInSightRange && !playerInAttackRange && it.player_IT == 1) Patroling();
+        if (playerInSightRange && !playerInAttackRange && it.player_IT == 1) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange && it.player_IT == 1) AttackPlayer();
+        if (it.player_IT == 0) RunAway();
     }
 
     private void Patroling()
@@ -97,13 +92,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void RunAway()
     {
-        if (playerInSightRange)
-        {
-            Vector3 runTo = transform.position + ((transform.position - player.position) * multiplier);
-            agent.SetDestination(runTo);
-        }
-            
-        
+       if(playerInSightRange)
+       {
+           Debug.Log("SEEN");
+           Vector3 dirToPlayer = transform.position - player.transform.position;
+           Vector3 newPos = transform.position + dirToPlayer;
+           agent.SetDestination(newPos);
+       }
     }
 
     private void AttackPlayer()
@@ -118,8 +113,8 @@ public class EnemyMovement : MonoBehaviour
             ///Attack code here
             animator.SetTrigger("shoot");
             GameObject rocketGo = Instantiate(rocket,firePoint.position,firePoint.rotation);
+            rocketGo.SetActive(true);
             rocketGo.GetComponent<Rigidbody>().AddForce(firePoint.forward * rocketSpeed,ForceMode.Impulse);
-           // Destroy(rocketGo,2f);
             ///End of attack code
 
             alreadyAttacked = true;

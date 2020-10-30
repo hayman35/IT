@@ -47,18 +47,12 @@
      <Compile Include="Assets\Scripts\Shooting\Bullet.cs" />
      <Compile Include="Assets\Scripts\Shooting\Gun.cs" />
      <Compile Include="Assets\Scripts\Timer\CountDownTimer.cs" />
-     <Compile Include="Assets\StylizedProjectilePack1\scripts\destroyMe.cs" />
-     <Compile Include="Assets\StylizedProjectilePack1\scripts\instantiateEffectCaller.cs" />
-     <Compile Include="Assets\StylizedProjectilePack1\scripts\particleColorChanger.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
-     <None Include="Assets\StylizedProjectilePack1\shader\Mobile-Particle-AlphaBlended-ZTestAlways.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-     <None Include="Assets\StylizedProjectilePack1\shader\Mobile-Particle-Add-ZTestAlways.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
      <None Include="Assets\EffectExamples\Misc Effects\Prefabs\Readme_Dissolve_Respawn_.txt" />
-     <None Include="Assets\StylizedProjectilePack1\Tips &amp; Documentations.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\EffectExamples\Magic Effects\Shaders\Ice.shader" />
      <None Include="Assets\EffectExamples\Misc Effects\Shaders\Respawn.shader" />
@@ -79,7 +73,6 @@
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
-     <None Include="Assets\NavMeshComponents\ProjectSettings\ProjectVersion.txt" />
      <None Include="Assets\EffectExamples\Misc Effects\Shaders\Dissolve.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
     <Reference Include="UnityEngine">
@@ -663,26 +656,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="NavMeshComponentsExamplesEditor.csproj">
-      <Project>{d7ad3fd8-47c2-a124-3173-1255ac7c8f46}</Project>
-      <Name>NavMeshComponentsExamplesEditor</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="NavMeshComponentsEditor.csproj">
-      <Project>{e211c38f-5873-4fa0-1b43-5144695c9658}</Project>
-      <Name>NavMeshComponentsEditor</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="NavMeshComponents.csproj">
-      <Project>{a6f9a294-cbc2-6a6c-9490-2173ab699de9}</Project>
-      <Name>NavMeshComponents</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="NavMeshComponentsExamples.csproj">
-      <Project>{3bcfe4f9-10fd-6010-346e-caa5ba504046}</Project>
-      <Name>NavMeshComponentsExamples</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

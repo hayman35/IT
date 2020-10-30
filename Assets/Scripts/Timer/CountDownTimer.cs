@@ -6,7 +6,7 @@ using TMPro;
 
 public class CountDownTimer : MonoBehaviour
 {
-    float currentTime = 0f;
+    public float currentTime = 0f;
     float startingTime = 300f;
     public TextMeshProUGUI countDownText;
     public bool timerIsRunning = false;

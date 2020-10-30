@@ -13,7 +13,6 @@ public class Bullet : MonoBehaviour
 
     private void Start() 
     {
-        
     }
     private void Update() 
     {
