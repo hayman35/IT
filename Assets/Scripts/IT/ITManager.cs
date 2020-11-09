@@ -12,6 +12,12 @@ public class ITManager : MonoBehaviour
     private int score = 0;
     public int player_IT = 0;
     public bool hit_Enemy = false ,hit_Player = false;
+
+    private void Start() 
+    {
+        PlayerPrefs.SetInt("Restart",0);
+        PlayerPrefs.Save();
+    }
     private void Update() 
     {
         Time.timeScale = 1f;
@@ -53,7 +59,6 @@ public class ITManager : MonoBehaviour
             savedata();
         }
         StartCoroutine(Restart());
-        SceneManager.LoadScene("MainMenu");
     }
 
     private void Score()
@@ -71,10 +76,11 @@ public void savedata()
 
 IEnumerator Restart()
 {
-    Cursor.lockState = CursorLockMode.None;
-    Cursor.visible = true;
-    highscore.text = "Game Over";
-    yield return new WaitForSeconds(4);
+    itUI.text = "Game Over";
+    PlayerPrefs.SetInt("Restart",1);
+    PlayerPrefs.Save();
+    yield return new WaitForSeconds(2f);
+    
 }
 
 }

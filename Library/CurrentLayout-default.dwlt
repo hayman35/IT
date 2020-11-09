@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_MinSize: {x: 709, y: 492}
   m_MaxSize: {x: 18004, y: 14042}
   vertical: 0
-  controlID: 112
+  controlID: 8306
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 201, y: 342}
   m_MaxSize: {x: 4001, y: 8042}
   vertical: 1
-  controlID: 113
+  controlID: 8307
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -221,7 +221,7 @@ MonoBehaviour:
   m_MinSize: {x: 232, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 150
+  controlID: 8255
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -429,9 +429,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 6.9510303, y: 2.5670135, z: 40.565956}
+    m_Target: {x: 532.4255, y: 139.80641, z: -159.87434}
     speed: 2
-    m_Value: {x: 6.9510303, y: 2.5670135, z: 40.565956}
+    m_Value: {x: 532.4255, y: 139.80641, z: -159.87434}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -477,9 +477,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.0078086373, y: -0.007502614, z: 0.00005817448, w: 0.99994504}
+    m_Target: {x: 0.18090734, y: -0.09042919, z: -0.016707173, w: -0.97919434}
     speed: 2
-    m_Value: {x: 0.009308511, y: -0.0075024907, z: 0.00006942824, w: 0.99992853}
+    m_Value: {x: 0.18090685, y: -0.09042894, z: -0.016707126, w: -0.97919166}
   m_Size:
     m_Target: 1.2247449
     speed: 2
@@ -706,7 +706,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 50dbffff80dbffff84dcffff96dcffffeaf4ffff0ef5ffff1af5ffff24f5ffff84f5ffffa8f5ffffd2f6ffffe0f6ffff68fbffff
+      m_ExpandedIDs: b07fffffe07fffffe080ffffee80ffff1685ffff4685ffff4686ffff5486ffffb2ecffffb4ecffffbcecffff5cefffff84efffffa8efffffeef3ffff68fbffff70390000e03900007c4100008c4100001a4500002a4500006247000088470000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -769,11 +769,11 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets
+    - Assets/Scripts/Menu
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets
+  - Assets/Scripts/Menu
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\hayma\OneDrive - The University of Western Ontario\Documents\Game
     Projects\IT
@@ -781,9 +781,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: f23d0000
-    m_LastClickedID: 15858
-    m_ExpandedIDs: 00000000f23d0000f43d0000f63d0000f83d0000fa3d0000fc3d0000fe3d0000003e0000023e0000043e0000063e0000083e00000a3e00000c3e00000e3e0000103e0000123e0000143e0000163e0000183e00001a3e00001c3e00001e3e0000203e0000223e0000243e0000263e0000283e00002a3e00002c3e00002e3e0000303e0000323e0000343e0000363e0000383e0000623e000000ca9a3b
+    m_SelectedIDs: c8400000
+    m_LastClickedID: 16584
+    m_ExpandedIDs: 000000008e3c0000903c0000923c0000943c0000963c0000983c00009a3c00009c3c00009e3c0000a03c0000a23c0000a43c0000a63c0000a83c0000aa3c0000ac3c0000ae3c0000b03c0000b23c0000b43c0000b63c0000b83c0000ba3c0000bc3c0000be3c0000c03c0000c23c0000c43c0000c63c0000c83c0000ca3c0000cc3c0000ce3c0000d03c0000d23c0000d43c0000fe3c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -811,7 +811,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f23d0000f43d0000f63d0000f83d0000fa3d0000fc3d0000fe3d0000003e0000023e0000043e0000063e0000083e00000a3e00000c3e00000e3e0000103e0000123e0000143e0000163e0000183e00001a3e00001c3e00001e3e0000203e0000223e0000243e0000263e0000283e00002a3e00002c3e00002e3e0000303e0000323e0000343e0000363e0000383e0000
+    m_ExpandedIDs: 000000008e3c0000903c0000923c0000943c0000963c0000983c00009a3c00009c3c00009e3c0000a03c0000a23c0000a43c0000a63c0000a83c0000aa3c0000ac3c0000ae3c0000b03c0000b23c0000b43c0000b63c0000b83c0000ba3c0000bc3c0000be3c0000c03c0000c23c0000c43c0000c63c0000c83c0000ca3c0000cc3c0000ce3c0000d03c0000d23c0000d43c000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -842,18 +842,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: 523c00009c3c0000403c0000743c0000c2380000b03b0000a43b0000023f0000b2130100b03f0000ba3400002c4b0000324b00000e3b0000be420000c43e0000c03e0000bc3e0000b83e0000b43e0000b2400000ee3d0000f23d0000c69f0000e63d0000e23d0000ea3d00006aac000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Standard Assets
-      m_OriginalName: Standard Assets
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 15974
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:

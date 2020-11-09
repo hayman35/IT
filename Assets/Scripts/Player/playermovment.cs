@@ -28,10 +28,11 @@ public class PlayerMovment : MonoBehaviour
 
     
     private void Start() {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Vector3 rot = transform.localRotation.eulerAngles;
         rotY = rot.y;
         rotX = rot.x;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Awake() {

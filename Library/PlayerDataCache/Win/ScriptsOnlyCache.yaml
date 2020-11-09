@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - MainMenu
     - PauseMenu
     - PlayerMovment
+    - RestartMenu
     Unity.ProBuilder.dll:
     - UnityEngine.ProBuilder.ProBuilderMesh
     Unity.Rider.Editor.dll:
@@ -82,35 +83,37 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11342}
+      Script: {instanceID: 11344}
     - Class: 114
-      Script: {instanceID: 11496}
+      Script: {instanceID: 11486}
     - Class: 114
-      Script: {instanceID: 11676}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 11682}
+      Script: {instanceID: 11668}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11768}
     - Class: 114
-      Script: {instanceID: 12250}
+      Script: {instanceID: 12222}
     - Class: 114
-      Script: {instanceID: 12492}
+      Script: {instanceID: 12452}
     - Class: 114
-      Script: {instanceID: 12880}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13394}
+      Script: {instanceID: 13340}
     - Class: 114
-      Script: {instanceID: 13410}
+      Script: {instanceID: 13356}
     - Class: 114
-      Script: {instanceID: 13554}
+      Script: {instanceID: 13494}
     - Class: 114
-      Script: {instanceID: 13648}
+      Script: {instanceID: 13584}
     - Class: 114
-      Script: {instanceID: 13654}
+      Script: {instanceID: 13590}
     - Class: 114
-      Script: {instanceID: 14190}
+      Script: {instanceID: 14114}
+    - Class: 114
+      Script: {instanceID: 19098}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 136
@@ -161,31 +164,31 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11342}
+      Script: {instanceID: 11344}
     - Class: 114
-      Script: {instanceID: 11614}
+      Script: {instanceID: 11602}
     - Class: 114
-      Script: {instanceID: 11676}
+      Script: {instanceID: 11662}
     - Class: 114
-      Script: {instanceID: 12250}
+      Script: {instanceID: 12222}
     - Class: 114
-      Script: {instanceID: 12308}
+      Script: {instanceID: 12278}
     - Class: 114
-      Script: {instanceID: 12880}
+      Script: {instanceID: 12832}
     - Class: 114
-      Script: {instanceID: 13234}
+      Script: {instanceID: 13182}
     - Class: 114
-      Script: {instanceID: 13254}
+      Script: {instanceID: 13202}
     - Class: 114
-      Script: {instanceID: 13554}
+      Script: {instanceID: 13494}
+    - Class: 114
+      Script: {instanceID: 13530}
     - Class: 114
       Script: {instanceID: 13590}
     - Class: 114
-      Script: {instanceID: 13654}
+      Script: {instanceID: 13826}
     - Class: 114
-      Script: {instanceID: 13898}
-    - Class: 114
-      Script: {instanceID: 14190}
+      Script: {instanceID: 14114}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -977,6 +980,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
     className: PlayableTrack
+  - hash:
+      serializedVersion: 2
+      Hash: b93acadd0ef1051ca1612eadb312808a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: RestartMenu
   platform: 5
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
